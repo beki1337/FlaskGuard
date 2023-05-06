@@ -1,6 +1,8 @@
-# FlaskRequestGaurd
+# FlaskRequestGuard
 
-Flask Request Guard is a Python library for validating incoming HTTP requests in Flask web applications. It provides a simple yet flexible way to define request rules and enforce them automatically on incoming requests, ensuring that only requests that meet the specified requirements are allowed to proceed. 
+Flask Request Guard is a Python library for validating incoming HTTP requests in Flask web applications. 
+It provides a simple yet flexible way to define request rules and enforce them automatically on incoming
+ requests, ensuring that only requests that meet the specified requirements are allowed to proceed. 
 
 
 ## Installation
@@ -14,46 +16,47 @@ pip install flask-request-gaurd
 
 
 ```python
-from FlaskRequestGaurd import RequestParameter
+from FlaskRequestGuard import RequestParameter
 
-# creats a key that has the name "name" and type str with min 0 and max 10 length
-name_key =  RequestParameter("name",str,0,10)
+# Creates a key that has the name "name" and type str with a minimum length of 0 and a maximum length of 10
+name_key =  RequestParameter("name", str, 0, 10)
 
-#creats a key that has the name "range" and type int with min -10 and max 10 value
-range_key = RequestParameter("range",int,-10,10)
+# Creates a key that has the name "range" and type int with a minimum value of -10 and a maximum value of 10
+range_key = RequestParameter("range", int, -10, 10)
 
 ```
 
-## Create vaildate funcktion 
+## Create validate function
 
 ```python
-from FlaskRequestGaurd import FlaskRequestGaurd
+from FlaskRequestGuard import FlaskRequestGuard
 
-#Init FlaskRequestGaurd
-gaurd = FlaskRequestGaurd("myapp")
+# Init FlaskRequestGuard
+guard = FlaskRequestGuard("myapp")
 
-reqeuerd_keys = [range_key,name_key] 
+required_keys = [range_key, name_key] 
 
-#Returns a funcktion that is used for check a request
-vaildet_user_request = gaurd.creat_validate_funcktion(reqeuerd_keys)
+# Returns a function that is used to check a request
+validate_user_request = guard.create_validate_function(required_keys)
 
 ```
 
 ## Check request
 
 ```python
-request = {"name":"erik","age":23,"range":2}
-# returns True,{"error_messages":[]} 
-isvaild,erros_messages =vaildet_user_request(request)
+request = {"name": "erik", "age": 23, "range": 2}
+# Returns True, {"error_messages": []} 
+is_valid, error_messages = validate_user_request(request)
 
-request = {"name":"eeeeeeeeeee","age":23,"range":2}
-# returns False,{'error messages': ["The 'name' field must be 10 size or less, and at least 0 size or more,but is actually 11 characters long."]}
-isvaild,erros_messages =vaildet_user_request(request)
+request = {"name": "eeeeeeeeeee", "age": 23, "range": 2}
+# Returns False, {"error_messages": ["The 'name' field must be 10 characters or less,
+#  and at least 0 characters or more, but is actually 11 characters long."]}
+is_valid, error_messages = validate_user_request(request)
 
 
-request = {"age":23,"range":2}
-# returns False,{'error messages': ["Missing name field in request body."]}
-isvaild,erros_messages =vaildet_user_request(request)
+request = {"age": 23, "range": 2}
+# Returns False, {"error_messages": ["Missing name field in request body."]}
+is_valid, error_messages = validate_user_request(request)
 
 ```
 
