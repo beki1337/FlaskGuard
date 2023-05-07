@@ -1,5 +1,5 @@
 import unittest
-from RequestParameter import RequestParameter
+from src.FlaskGuard.request_parameter import RequestParameter
 
 
 

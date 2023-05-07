@@ -3,3 +3,9 @@ __pycache__/
 
 # Ignore the env directory
 env/
+dist/
+flask_guard.egg-info
+
+
+pyproject.toml
+setup.py

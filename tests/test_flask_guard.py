@@ -1,15 +1,15 @@
 import unittest
 from unittest.mock import patch
-from FlaskGuard import RequestChecker
-from RequestParameter import RequestParameter
+from src.FlaskGuard.flask_guard import FlaskGuard
+from src.FlaskGuard.request_parameter import RequestParameter
 
 
 
-class TestRequestChecker(unittest.TestCase):
+class TestFlaskGuard(unittest.TestCase):
     
 
     def setUp(self):
-        self.flaskGuard =  RequestChecker("myapp")
+        self.flaskGuard =  FlaskGuard("myapp")
         self.requestParameter = RequestParameter("name",min_value=0,max_value=10)
         self.requestParameter_int_value = RequestParameter("age",value_type=int,min_value=0,max_value=99)
 

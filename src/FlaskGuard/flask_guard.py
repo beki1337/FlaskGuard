@@ -1,8 +1,8 @@
 from typing import Type,Dict, List,Tuple,Any,Callable
-from RequestParameter import RequestParameter
+from .request_parameter import RequestParameter
 
 
-class RequestChecker:
+class FlaskGuard:
   """
   The RequestChecker class is a utility class for validating and checking the 
   format of request data. It contains functions for generating error messages,
@@ -177,7 +177,7 @@ class RequestChecker:
 
   def create_validate_function(
     self,
-    required_keys:list[RequestParameter]
+    required_keys:list
     ) -> Callable:
      """
      Creates a function that validates a dictionary against a set of required
