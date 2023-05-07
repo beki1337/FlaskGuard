@@ -12,7 +12,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to intall flask-re
 pip install flask-guard
 ```
 
-## Creat the keys
+## Create the keys
 
 
 ```python
@@ -28,7 +28,7 @@ range_key = RequestParameter("range", int, -10, 10)
 
 ```
 
-## Create validate function
+## Create the validation function
 
 ```python
 from FlaskGuard import  FlaskGuard
@@ -52,8 +52,8 @@ request = {"name": "erik", "age": 23, "range": 2}
 is_valid, error_messages = validate_user_request(request)
 
 request = {"name": "eeeeeeeeeee", "age": 23, "range": 2}
-# Returns (False, {"error_messages": ["The 'name' field must be 10 characters or less,
-#  and at least 0 characters or more, but is actually 11 characters long."]})
+# Returns (False, {"error_messages": ["The 'name' field must be 10 size or less,
+#  and at least 0 size or more, but is actually 11 characters long."]})
 is_valid, error_messages = validate_user_request(request)
 
 
@@ -62,6 +62,9 @@ request = {"age": 23, "range": 2}
 is_valid, error_messages = validate_user_request(request)
 
 ```
+
+For an example where it's used with Flask, check out FlaskGuard-example [repo](https://github.com/beki1337/flaskguard-example).
+
 
 
 ## Run tests
